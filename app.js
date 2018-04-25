@@ -33,14 +33,14 @@ app.get('/api/games', function(req, res) {
 
 //====POST NEW GAME===//
 app.post('/api/games', function(req, res) {
-  Game.create({
-    score: req.body.score,
-    teams: req.body.teams,
-  }).then(game => {
-    res.json(game)
-  });
-  console.log('req',req);
-  console.log('res', res);
+	console.log('req',req);
+	console.log('res', res);
+	Game.create({
+		score: req.body.score,
+		teams: req.body.teams,
+	}).then(game => {
+		res.json(game)
+	});
 });
 
 //====MONGOOSE CONNECT===//
