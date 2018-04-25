@@ -42,5 +42,5 @@ mongoose.connect(url, function (err, db) {
 	}
 });
 
-app.listen(80);
+app.listen(process.env.PORT || 3000);
 console.log('starting the application');
