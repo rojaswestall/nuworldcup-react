@@ -8,6 +8,14 @@ const Game = require('./models/game.js')
 const app = express();
 const url = 'mongodb://nu-worldcupadmin:2018@ds257579.mlab.com:57579/nu-worldcup';
 
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 //====ROOT DIRECTORY===//
 app.get('/', function(req, res) {
   res.json('you did it');

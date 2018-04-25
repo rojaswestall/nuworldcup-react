@@ -26,6 +26,7 @@ class Game extends Component {
   }
 
   addGame = (event) => {
+    console.log('entered addGame!');
       event.preventDefault();
       this.setState({
         score: event.target.value,
