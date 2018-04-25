@@ -31,6 +31,8 @@ app.post('/api/games', function(req, res) {
   }).then(game => {
     res.json(game)
   });
+  console.log('req',req);
+  console.log('res', res);
 });
 
 //====MONGOOSE CONNECT===//
