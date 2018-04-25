@@ -11,6 +11,7 @@ const url = 'mongodb://nu-worldcupadmin:2018@ds257579.mlab.com:57579/nu-worldcup
 //====ROOT DIRECTORY===//
 app.get('/', function(req, res) {
   res.json('you did it');
+  console.log('A GET request was made');
 });
 
 
@@ -41,4 +42,5 @@ mongoose.connect(url, function (err, db) {
 	}
 });
 
-app.listen(3000);
+app.listen(80);
+console.log('starting the application');
