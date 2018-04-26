@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 //====GET GAMES===//
 app.get('/api/games', function(req, res) {
 	// Need to find to take arguments
-	console.log(req.body);
+	console.log(req);
   	Game.find({team1: "Mexico"}).then(eachOne => {
     	res.json(eachOne);
     })
