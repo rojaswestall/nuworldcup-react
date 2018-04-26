@@ -46,7 +46,7 @@ app.post('/api/games', function(req, res) {
 
 app.post('/slack/addscore', function(req, res) {
 	console.log('req',req.body);
-	console.log('res', res);
+	// console.log('res', res);
 	axios.post('https://hooks.slack.com/services/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', 
 		{"text":"A new score has been added!"});
 });
