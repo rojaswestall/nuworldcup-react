@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const Game = require('./models/game.js')
 const app = express();
 const url = 'mongodb://nu-worldcupadmin:2018@ds257579.mlab.com:57579/nu-worldcup';
+const axios = require('axios');
 
 // For cors
 app.use(function(req, res, next) {
@@ -44,8 +45,10 @@ app.post('/api/games', function(req, res) {
 });
 
 app.post('/slack/addscore', function(req, res) {
-	console.log('req',req);
+	console.log('req',req.body);
 	console.log('res', res);
+	axios.post('https://hooks.slack.com/services/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', 
+		{"text":"A new score has been added!"});
 });
 
 
