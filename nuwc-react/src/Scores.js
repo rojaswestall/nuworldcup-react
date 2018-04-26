@@ -6,6 +6,11 @@ class Scores extends Component {
 	constructor(props) {
 		super(props);
 
+		this.team1 = "";
+		this.team2 = "";
+		this.score1 = "";
+		this.score2 = "";
+
 		this.scores = {
       		messages: "",
     	};
