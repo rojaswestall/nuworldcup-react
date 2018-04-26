@@ -23,10 +23,12 @@ class Scores extends Component {
     		var currentMessages = this.scores;
     		axios.get('http://rojaswestall.com/api/games', {
     			team: 'Mexico'
-  			}).then((res) => res.json().then((data) => {
-            	currentMessages.push(data);
-            	console.log(currentMessages);
-        	}));
+  			}).then((res) => console.log(res));
+
+  			// (res) => res.json().then((data) => {
+     //        	currentMessages.push(data);
+     //        	console.log(currentMessages);
+     //    	}));
     		this.setState({'scores': currentMessages});
     	}
 

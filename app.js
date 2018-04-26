@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 //====GET GAMES===//
 app.get('/api/games', function(req, res) {
 // Need to find to take arguments
-  Game.find({team: "Mexico"}).then(eachOne => {
+  Game.find({teams: "Mexico"}).then(eachOne => {
     res.json(eachOne);
     })
   console.log('a get request was made and it looked at the db')
