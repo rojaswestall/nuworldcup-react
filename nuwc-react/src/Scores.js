@@ -20,14 +20,14 @@ class Scores extends Component {
     		// 	return results.json()});
 
     		// Need to change this get to take arguments
-    		var currentMessages = this.state.messages;
+    		var currentMessages = this.scores;
     		axios.get('http://rojaswestall.com/api/games', {
-    			team: Mexico
-  			}).then((res) => r.json().then((data) => {
+    			team: 'Mexico'
+  			}).then((res) => res.json().then((data) => {
             	currentMessages.push(data);
             	console.log(currentMessages);
         	}));
-    		this.setState({'messages': currentMessages});
+    		this.setState({'scores': currentMessages});
     	}
 
     		// data.map((msg) => {
@@ -37,11 +37,12 @@ class Scores extends Component {
     		// 			<h2 className="h2sig">-{msg.guestSignature}</h2>
     		// 		</div>)})
 
+
     render() {
     	return (
 			<div className="guestdataContainer">
           		<h6>Guestbook Messages</h6>
-          		{this.state.messages}
+          		{this.scores[0]}
         	</div>
         )
     }
