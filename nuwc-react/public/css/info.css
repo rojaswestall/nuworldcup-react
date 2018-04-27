@@ -1,0 +1,155 @@
+#sidebar {
+	position: fixed;
+	top: 60px;
+	right: 30px;
+	text-align: right;
+}
+
+#winnercup {
+	width: 50%;
+	display: inline-block;
+}
+
+ul {
+	padding-left: 0;
+	list-style-type: none;
+	display: none;
+}
+
+ul.nav {
+	display: list-item;
+}
+
+.main-ul {
+	display: list-item;
+}
+
+.main-li {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.li-2 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.ul-3 {
+	font-size: 16px;
+}
+
+.lead {
+	text-align: center;
+}
+
+.table-head {
+	font-weight: 700;
+}
+
+a {
+	color: black;
+}
+
+a:hover, a:visited, a:active, a:link {
+	text-decoration: none;
+}
+
+.table-body {
+	font-weight: 300;
+}
+
+.points-head {
+	text-align: right;
+}
+
+.points {
+	text-align: right;
+}
+
+.fixture-row {
+	font-size: 20px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: 300;
+}
+
+.fixture-group-title {
+	margin-bottom: 10px;
+}
+
+.score {
+	font-weight: bold;
+	font-size: 26px;
+}
+
+.game-identifier {
+	font-size: 16px;
+	text-align: left;
+/*	margin: 0 auto;
+*/}
+
+.final {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.fixture-team {
+	font-size: 25px;
+	text-transform: uppercase;	
+}
+
+.flag-left {
+	float: left;
+}
+
+.flag-right {
+	float: right;
+}
+
+@media screen and (max-width: 1000px) {
+	#sidebar {
+		right: 20px;
+	}
+
+	.main-li {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.li-2 {
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.ul-3 {
+		font-size: 12px;
+	}
+
+
+	.game-identifier {
+		font-size: 12px;
+	}
+
+	.fixture-team {
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	#sidebar {
+		display: none;
+	}
+
+	.game-identifier {
+		font-size: 10px;
+	}
+
+	.fixture-team {
+		font-size: 12px;
+	}
+
+	.fixture-score {
+		font-size: 14px;
+	}
+}

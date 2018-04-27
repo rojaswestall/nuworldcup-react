@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import axios from 'axios';
 import Scores from './Scores';
 
-class Homepage extends Component {
+class Info extends Component {
     render() {
 		return (
 			<Scores team1="Mexico" team2="Mozambique" />
@@ -11,4 +9,4 @@ class Homepage extends Component {
 	}
 }
 
-export default Homepage;
+export default Info;

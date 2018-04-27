@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios';
 
 class Scores extends Component {
@@ -30,29 +29,29 @@ class Scores extends Component {
     			team2: this.state.team2
   			}).then((res) => {
   				var dbdata = res.data[0];
-  				if (dbdata.team1 === this.team1) {
+  				if (dbdata.team1 === this.state.team1) {
   					this.setState({score1: dbdata.score1});
   					this.setState({score2: dbdata.score2});
-  					console.log('reached if');
   				}
   				else {
-  					this.setState({'score1': dbdata.score2});
-  					this.setState({'score2': dbdata.score1});
+  					this.setState({score1: dbdata.score2});
+  					this.setState({score2: dbdata.score1});
   				}
+          console.log(dbdata.team1);
+          console.log(this.state.team1);
   			});
 
     	}
 
     render() {
     	return (
-			<div className="guestdataContainer">
-          		<h6>Guestbook Messages</h6>
+			  <div className="guestdataContainer">
           		{this.state.team1}
           		{this.state.score1}
           		{this.state.team2}
           		{this.state.score2}
-        	</div>
-        )
+        </div>
+      )
     }
 }
 

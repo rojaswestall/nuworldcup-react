@@ -1,0 +1,21 @@
+#about {
+/*	background: url("../img/about-bg.jpg");*/
+	background-size: length;
+}
+
+#gonzo {
+/*	background: url("../img/gonzo-bg.jpg");*/
+	background-size: length;
+}
+
+#about-images{
+	margin-top: 20px;
+}
+
+.rounded-img {
+    border-radius: 50%;
+}
+
+#gonzo-img {
+	width: 100%;
+}
