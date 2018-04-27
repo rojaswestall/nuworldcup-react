@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import title from '../assets/img/titles/faq-title.png';
+import map from '../assets/img/map.png';
 
 class FAQ extends Component {
     render() {
@@ -31,9 +33,18 @@ class FAQ extends Component {
 
 		return (
 			<div>
-				<div className="container">
+        		<div className="d-flex justify-content-center title-div">
+            		<img className="title" src={title} alt={"FAQ"}/> 
+        		</div>
 
+				<div className="container">
+					
 					<div id="accordion">
+
+						<div className="faqHeader">Field Map</div>
+						<div className="d-flex justify-content-center map-div">
+            				<img className="field-map" src={map} alt={"map"}/> 
+        				</div>
 
 						<div className="faqHeader">Registration</div>
 

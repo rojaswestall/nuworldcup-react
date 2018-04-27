@@ -15,14 +15,41 @@ html {
     height: 100%;
 }
 
-.navbar .navbar-nav {
+/*.navbar .navbar-nav {
     color: #9d9d9d;
+}*/
+
+/*FOR IMAGE TITLES ON EACH PAGE*/
+.title-div {
+    height: 25vh;
+    min-height:100px;
+    margin-top: 5vh;
+}
+
+.title {
+    max-height: 100% !important;
+}
+
+
+/*FAQ PAGE*/
+.map-div {
+    height: 45vh;
+    min-height:300px;
+    margin-top: 5vh;
+}
+
+.field-map {
+    max-width: 100%;
 }
 
 .faqHeader {
     font-size: 27px;
     margin: 20px;
 }
+
+
+
+
 
 body {
     /*padding-top: 50px;  Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
