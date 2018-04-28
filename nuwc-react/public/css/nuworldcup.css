@@ -47,6 +47,53 @@ html {
     margin: 20px;
 }
 
+/*ABOUT US*/
+
+/*GONZO*/
+.infographic-div {
+    height: 140vh;
+    min-height:300px;
+    margin-top: 5vh;
+}
+
+.infographic {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+/*Need fix for super small, long screen*/
+/*@media(max-width:767px) {
+    .infographic-div {
+        height: 140vh;
+        min-height:300px;
+        margin-top: 5vh;
+    }
+
+    .infographic {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}*/
+
+
+
+/*Need to wrap the page with the wrap class, make sure margin and padding in wrap match min-height in footer*/
+/*Sticky Footer*/
+/* Wrapper for page content to push down footer */
+/*.wrap {
+  min-height: 100% !important;
+  height: auto !important;
+  height: 100% !important;
+  margin: 0 auto -10px !important;
+  padding: 0 0 10px !important;
+}*/
+
+/* Set the fixed height of the footer here */
+/*.footer {
+    margin-top: 30px !important;
+    min-height: 10px !important;
+}
+*/
 
 
 
