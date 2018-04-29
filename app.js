@@ -63,28 +63,61 @@ app.post('/slack/addscore', function(req, res) {
 	var tournament = text[4];
 	var type = text[5];
 
-	console.log(team1);
-	console.log(score1);
-	console.log(team2);
-	console.log(score2);
-	console.log(tournament);
-	console.log(type);
+	// Need to put this into the database now
 
+	Game.findOne({ $or:[ {'team1':team1, 'team2': team2, 'tournament': tournament, 'type': type}, {'team1':team2, 'team2': team1, 'tournament': tournament, 'type': type} ]}, (err, game) => {
+			if (err) {
+				console.log("Error in finding Game", err)
+			}
 
-	var response = "A new score has been added!\n\n"
+			if (game) {
 
-	if (score1 > score2) {
-		response = response + team1 + " beat " + team2 + " " + score1 + "-" + score2 + "!";
-	}
-	else if (score1 < score2) {
-		response = response + team2 + " beat " + team1 + " " + score2 + "-" + score1 + "!";
-	}
-	else {
-		response = response + team1 + " and " + team2 + " tied!";
-	}
+				if (game.team1 == team1) {
+					game.score1 = score1;
+					game.score2 = score2;
+				}
+				else {
+					game.score1 = score2;
+					game.score2 = score1;
+				}
 
-	axios.post('https://hooks.slack.com/services/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', 
-		{"text":response});
+				game.save((err) => {
+					if (err) {
+				  		console.log("Error updating the game with the new scores from slack", err);
+				  	}
+				  	else {
+				  		// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
+
+						var response = "A new score has been added!\n\n";
+
+						if (score1 > score2) {
+							response = response + team1 + " beat " + team2 + " " + score1 + "-" + score2 + "!";
+						}
+						else if (score1 < score2) {
+							response = response + team2 + " beat " + team1 + " " + score2 + "-" + score1 + "!";
+						}
+						else {
+							response = response + team1 + " and " + team2 + " tied!";
+						}
+						axios.post('https://hooks.slack.com/services/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', 
+							{"text":response});
+				  	}
+				});
+			}
+
+			else {
+				// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
+
+				var response = "There was an error adding the score to the website :( Please check what you sent:\n\n";
+
+				response = response + text;
+
+				axios.post('https://hooks.slack.com/services/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', 
+					{"text":response});
+			}
+
+		});
+	
 });
 
 
