@@ -5,7 +5,7 @@ class Groups extends Component {
     render() {
 		return (
 			<div className="container">
-				<GroupScores team1="Mexico" team2="Mozambique" />
+				<GroupScores team1="Mexico" team2="Mozambique" tournament="co-rec" />
 		    </div>
 	    );
 	}

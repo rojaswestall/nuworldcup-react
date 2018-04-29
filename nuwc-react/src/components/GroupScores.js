@@ -9,7 +9,8 @@ class GroupScores extends Component {
     		team1: this.props.team1,
     		team2: this.props.team2,
     		score1: 0,
-    		score2: 0
+    		score2: 0,
+        tournament: this.props.tournament
   		};
     }
 

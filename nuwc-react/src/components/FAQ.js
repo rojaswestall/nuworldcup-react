@@ -166,7 +166,7 @@ class FAQ extends Component {
 						<div className="card" style={cardStyle}>
 							<div className="card-header btn btn-light text-left" style={cardResponsive} id="headingTen" data-parent="#accordion" data-toggle="collapse" data-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
 								<div >
-									Can a player play in the Co-Ed and Women's tournament?
+									Can a player play in the Co-Rec and Women's tournament?
 								</div>
 							</div>
 							<div id="collapseTen" className="collapse" aria-labelledby="headingTen" data-parent="#accordion">

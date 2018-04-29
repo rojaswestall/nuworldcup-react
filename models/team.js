@@ -2,32 +2,28 @@ const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-const gameSchema = new Schema({
-  team1: {
+const teamSchema = new Schema({
+  name: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
-  score1: {
+  abbreviation: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
-  team2: {
+  flag: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
-  score2: {
-    type: mongoose.Schema.Types.Mixed,
-    required: true,
-  },
-  type: {
+  points: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
   tournament: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
-  },
+  }
 })
 
-const Game = mongoose.model('Game', gameSchema);
-module.exports = Game;
+const Team = mongoose.model('Team', teamSchema);
+module.exports = Team;

@@ -30,6 +30,19 @@ html {
     max-height: 100% !important;
 }
 
+/*HOMEPAGE*/
+.home-logo-div {
+    height: 80vh;
+    min-height:300px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.home-logo {
+    max-height: 100%;
+    max-width: 100%;
+}
+
 
 /*FAQ PAGE*/
 .map-div {
@@ -79,6 +92,7 @@ html {
     text-align: center;
     margin-top: 40px;
     margin-bottom: 30px;
+    font-weight: 700;
 }
 
 .bracket-title-wc {
@@ -86,6 +100,7 @@ html {
     text-align: center;
     margin-top: 60px;
     margin-bottom: 30px;
+    font-weight: 700;
 }
 
 /*Need fix for super small, long screen*/
