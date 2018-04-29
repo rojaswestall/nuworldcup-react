@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Scores extends Component {
+class GroupScores extends Component {
 	constructor(props) {
 		super(props);
 
@@ -55,4 +55,4 @@ class Scores extends Component {
     }
 }
 
-export default Scores;
+export default GroupScores;

@@ -61,6 +61,33 @@ html {
     max-width: 100%;
 }
 
+/*Tournament Info */
+.info-logo-div {
+    height: 30vh;
+    min-height:300px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.info-logo {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.bracket-title {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.bracket-title-wc {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
 /*Need fix for super small, long screen*/
 /*@media(max-width:767px) {
     .infographic-div {
