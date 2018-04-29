@@ -25,11 +25,16 @@ class GroupScores extends Component {
     	componentDidMount() {
     		// Need to change this get to take arguments
     		// var currentMessages = this.scores;
-    		axios.get('http://rojaswestall.com/api/games', {
-    			team1: this.state.team1,
-    			team2: this.state.team2
+        // real endpoint: http://rojaswestall.com/api/games
+        // for testing: http://localhost:4000/api/games
+    		axios.get('http://localhost:4000/api/games', {
+    			params: {
+            team1: this.state.team1,
+    			  team2: this.state.team2,
+            tournament: this.state.tournament
+          }
   			}).then((res) => {
-  				var dbdata = res.data[0];
+  				var dbdata = res.data;
   				if (dbdata.team1 === this.state.team1) {
   					this.setState({score1: dbdata.score1});
   					this.setState({score2: dbdata.score2});
@@ -38,8 +43,6 @@ class GroupScores extends Component {
   					this.setState({score1: dbdata.score2});
   					this.setState({score2: dbdata.score1});
   				}
-          console.log(dbdata.team1);
-          console.log(this.state.team1);
   			});
 
     	}
@@ -47,10 +50,10 @@ class GroupScores extends Component {
     render() {
     	return (
 			  <div className="guestdataContainer">
-          		{this.state.team1}
-          		{this.state.score1}
-          		{this.state.team2}
-          		{this.state.score2}
+          		<div>{this.state.team1} : {this.state.score1}</div>
+          		<div>{this.state.team2} : {this.state.score2}</div>
+          		
+          		
         </div>
       )
     }

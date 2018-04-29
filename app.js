@@ -19,9 +19,6 @@ app.use(function(req, res, next) {
 // For parsing application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// For parsing application/json
-app.use(bodyParser.json());
-
 
 //====ROOT DIRECTORY===//
 app.get('/', function(req, res) {
@@ -30,20 +27,20 @@ app.get('/', function(req, res) {
 });
 
 
-//====GET GAMES===//
+//====GET GROUP STAGE GAMES===//
 app.get('/api/games', function(req, res) {
-	// Need to find to take arguments
-	console.log(req);
-  	Game.find({team1: "Mexico"}).then(eachOne => {
-    	res.json(eachOne);
+	var params = req.query;
+	var team1 = params.team1;
+	var team2 = params.team2;
+	var tournament = params.tournament;
+
+  	Game.findOne({ $or:[{'team1': team1, 'team2': team2, 'tournament': tournament}, {'team1': team2, 'team2': team1, 'tournament': tournament}]}).then(game => {
+    	res.json(game);
     })
-  // console.log('a get request was made and it looked at the db');
  })
 
 //====POST NEW GAME===//
 app.post('/api/games', function(req, res) {
-	console.log('req',req);
-	console.log('res', res);
 	Game.create({
 		score: req.body.score,
 		teams: req.body.teams,
@@ -54,8 +51,8 @@ app.post('/api/games', function(req, res) {
 
 app.post('/slack/addscore', function(req, res) {
 	// console.log('req',res);
-	var text = req.body.text;
-	text = text.split(" ");
+	var params = req.body.text;
+	text = params.split(" ");
 	var team1 = text[0];
 	var score1 = parseInt(text[1]);
 	var team2 = text[2];
@@ -66,58 +63,47 @@ app.post('/slack/addscore', function(req, res) {
 	// Need to put this into the database now
 
 	Game.findOne({ $or:[ {'team1':team1, 'team2': team2, 'tournament': tournament, 'type': type}, {'team1':team2, 'team2': team1, 'tournament': tournament, 'type': type} ]}, (err, game) => {
-			if (err) {
-				console.log("Error in finding Game", err)
+		if (err) {
+			console.log("Error in finding Game", err)
+		}
+		if (game) {
+			if (game.team1 == team1) {
+				game.score1 = score1;
+				game.score2 = score2;
 			}
-
-			if (game) {
-
-				if (game.team1 == team1) {
-					game.score1 = score1;
-					game.score2 = score2;
-				}
-				else {
-					game.score1 = score2;
-					game.score2 = score1;
-				}
-
-				game.save((err) => {
-					if (err) {
-				  		console.log("Error updating the game with the new scores from slack", err);
-				  	}
-				  	else {
-				  		// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
-
-						var response = "A new score has been added!\n\n";
-
-						if (score1 > score2) {
-							response = response + team1 + " beat " + team2 + " " + score1 + "-" + score2 + "!";
-						}
-						else if (score1 < score2) {
-							response = response + team2 + " beat " + team1 + " " + score2 + "-" + score1 + "!";
-						}
-						else {
-							response = response + team1 + " and " + team2 + " tied!";
-						}
-						axios.post('https://hooks.slack.com/services/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', 
-							{"text":response});
-				  	}
-				});
-			}
-
 			else {
-				// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
-
-				var response = "There was an error adding the score to the website :( Please check what you sent:\n\n";
-
-				response = response + text;
-
-				axios.post('https://hooks.slack.com/services/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', 
-					{"text":response});
+				game.score1 = score2;
+				game.score2 = score1;
 			}
-
-		});
-	
+			game.save((err) => {
+				if (err) {
+			  		console.log("Error updating the game with the new scores from slack", err);
+			  	}
+			  	else {
+			  		// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
+					var response = "A new score has been added!\n\n";
+					if (score1 > score2) {
+						response = response + team1 + " beat " + team2 + " " + score1 + "-" + score2 + "!";
+					}
+					else if (score1 < score2) {
+						response = response + team2 + " beat " + team1 + " " + score2 + "-" + score1 + "!";
+					}
+					else {
+						response = response + team1 + " and " + team2 + " tied!";
+					}
+					axios.post('https://hooks.slack.com/services/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', 
+						{"text":response});
+			  	}
+			});
+		}
+		else {
+			// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
+			var response = "There was an error adding the score to the website :( Please check what you sent:\n\n";
+			response = response + params;
+			axios.post('https://hooks.slack.com/services/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', 
+				{"text":response});
+		}
+	});
 });
 
 
