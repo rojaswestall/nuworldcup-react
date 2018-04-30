@@ -37,7 +37,7 @@ app.get('/api/games', function(req, res) {
   	Game.findOne({ $or:[{'team1': team1, 'team2': team2, 'tournament': tournament}, {'team1': team2, 'team2': team1, 'tournament': tournament}]}).then(game => {
     	res.json(game);
     })
- })
+ });
 
 //====POST NEW GAME===//
 app.post('/api/games', function(req, res) {
@@ -47,6 +47,12 @@ app.post('/api/games', function(req, res) {
 	}).then(game => {
 		res.json(game)
 	});
+});
+
+app.post('/slack/updatepoints', function (req, res) {
+
+	axios.post('https://hooks.slack.com/services/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', 
+						{"text":"Score was updated for a team to be ?"});
 });
 
 app.post('/slack/addscore', function(req, res) {
@@ -107,7 +113,6 @@ app.post('/slack/addscore', function(req, res) {
 });
 
 
-
 // Body sent like this from Slack:
 
 // token=gIkuvaNzQIHg97ATvDxqgjtO
@@ -123,20 +128,6 @@ app.post('/slack/addscore', function(req, res) {
 // text=Mexico 2 Mozambique 2 co-rec group
 // response_url=https://hooks.slack.com/commands/1234/5678
 // trigger_id=13345224609.738474920.8088930838d88f008e0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

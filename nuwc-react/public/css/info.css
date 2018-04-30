@@ -96,7 +96,7 @@ a:hover, a:visited, a:active, a:link {
 
 .fixture-team {
 	font-size: 25px;
-	text-transform: uppercase;	
+	text-transform: uppercase !important;	
 }
 
 .flag-left {
