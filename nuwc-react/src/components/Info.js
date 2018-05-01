@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import GroupScores from './GroupScores';
-import Brackets from './Brackets';
-import Groups from './Groups';
+import KnockoutStage from './KnockoutStage';
+import GroupStage from './GroupStage';
 import Footer from './Footer';
 import logo from '../assets/img/nuwclogo.jpg';
 
@@ -25,8 +24,8 @@ class Info extends Component {
 					</ul>
 
 					<div className="tab-content" id="nav-tabContent">
-					  <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><Groups/></div>
-					  <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"><Brackets/></div>
+					  <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><GroupStage/></div>
+					  <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"><KnockoutStage/></div>
 					</div>
 				</div>
 				<Footer />

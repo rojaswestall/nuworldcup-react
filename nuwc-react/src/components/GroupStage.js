@@ -3,14 +3,14 @@ import GroupScores from './GroupScores';
 import WomenGroup from './WomenGroup';
 import Group from './Group';
 
-class Groups extends Component {
+class GroupStage extends Component {
     render() {
 		return (
 				<div className="container">
 					<div className="groupstage-title">Groups</div>
 
 					<div className="bracket-title">Women's World Cup 2018</div>
-					<div className="row align-items-center ">
+					<div className="row align-items-center">
 						<WomenGroup group="1" team1="Australia" team2="South Korea" team3="Mexico" team4="Gonzo Team 1"/>
 						<WomenGroup group="2" team1="USA" team2="Ukraine" team3="Argentina" team4="Gonzo Team 2"/>
 					</div>
@@ -159,7 +159,7 @@ class Groups extends Component {
 	}
 }
 
-export default Groups;
+export default GroupStage;
 
 
 // <div className="group">

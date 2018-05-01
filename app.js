@@ -33,9 +33,10 @@ app.get('/api/games', function(req, res) {
 	var params = req.query;
 	var team1 = params.team1;
 	var team2 = params.team2;
+	var game = params.game;
 	var tournament = params.tournament;
 
-  	Game.findOne({ $or:[{'team1': team1, 'team2': team2, 'tournament': tournament}, {'team1': team2, 'team2': team1, 'tournament': tournament}]}).then(game => {
+  	Game.findOne({ $or:[{'team1': team1, 'team2': team2, 'tournament': tournament}, {'team1': team2, 'team2': team1, 'tournament': tournament}, {'tournament': tournament, 'game': game}]}).then(game => {
     	res.json(game);
     })
  });
@@ -93,7 +94,7 @@ app.post('/slack/updatepoints', function (req, res) {
 	});
 });
 
-// UPDATE GROUP STAGE GAMES FROM SLACK
+// UPDATE GROUP AND KNOCKOUT STAGE GAMES FROM SLACK
 app.post('/slack/addscore', function(req, res) {
 
 	var params = req.body.text;
@@ -150,6 +151,11 @@ app.post('/slack/addscore', function(req, res) {
 		}
 	});
 });
+
+// KNOCKOUT GAME
+
+// Find that game and update the teams
+
 
 
 // Body sent like this from Slack:

@@ -27,7 +27,7 @@ class WomenGroup extends Component {
     		var pointsCopy = this.state.points;
     		var flagsCopy = this.state.flags;
 
-    		axios.get('http://localhost:4000/api/points', {
+    		axios.get('http://rojaswestall.com/api/points', {
 				params: {
 	        		name: this.state.teams[team].replace(/\s+/g, '-'),
 	        		tournament: this.state.tournament

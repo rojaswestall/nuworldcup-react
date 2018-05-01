@@ -1,47 +1,50 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import classnames from 'classnames';
 
 class KnockoutGame extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        team1: this.props.team1,
-        team2: this.props.team2,
-        score1: this.props.score1,
-        score2: this.props.score2,
         field: this.props.field,
         time: this.props.time,
+        game: parseInt(this.props.game),
         firstPlace: "",
-        secondPlace: ""
+        secondPlace: "",
+        team1Status: "",
+        team2Status: "",
+        team1: "",
+        team2: "",
+        score1: 0,
+        score2: 0,
+        flag1: "flag-icon-",
+        flag2: "flag-icon-"
+
+
         
       };
     }
 
 
+// tournament-bracket__team--winner goes with tournament-bracket__team in tr
+// If team1 score > team2 score then team1Status becomes tournament-bracket__team--winner 
+// include team1Status and team2Status as classes
+    componentDidMount() {
+        // Need to change this get to take arguments
+        // var currentMessages = this.scores;
+        axios.get('http://rojaswestall.com/api/games', {
+          game: this.state.game,
+          tournament: this.state.tournament
+        }).then((res) => {
+          var dbdata = res.data[0];
+          if (dbdata.game === this.state.game) {
+            this.setState({team1: dbdata.team1});
+            this.setState({team2: dbdata.team2});
+          }
+        });
 
-
-    // componentDidMount() {
-    //     // Need to change this get to take arguments
-    //     // var currentMessages = this.scores;
-    //     axios.get('http://rojaswestall.com/api/games', {
-    //       team1: this.state.team1,
-    //       team2: this.state.team2
-    //     }).then((res) => {
-    //       var dbdata = res.data[0];
-    //       if (dbdata.team1 === this.state.team1) {
-    //         this.setState({score1: dbdata.score1});
-    //         this.setState({score2: dbdata.score2});
-    //       }
-    //       else {
-    //         this.setState({score1: dbdata.score2});
-    //         this.setState({score2: dbdata.score1});
-    //       }
-    //       console.log(dbdata.team1);
-    //       console.log(this.state.team1);
-    //     });
-
-    //   }
+      }
 
     render() {
       return (
@@ -50,6 +53,8 @@ class KnockoutGame extends Component {
             <table className="tournament-bracket__table">
               <caption className="tournament-bracket__caption">
                 <time dateTime="">Field {this.state.field}, {this.state.time}</time>
+                <br/>
+                <time dateTime="">Game {this.state.game}</time>
               </caption>
               <thead className="sr-only">
                 <tr>
@@ -58,22 +63,22 @@ class KnockoutGame extends Component {
                 </tr>
               </thead>  
               <tbody className="tournament-bracket__content">
-                <tr className="tournament-bracket__team tournament-bracket__team--winner">
+                <tr className="tournament-bracket__team">
                   <td className="tournament-bracket__country">
-                    <abbr className="tournament-bracket__code" title="Canada">CAN</abbr>
-                    <span className="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag"></span>
+                    <span className="tournament-bracket__code" title="CountryName">{this.state.team1}</span>
+                    <span className={classnames("tournament-bracket__flag", "flag-icon", this.state.flag1)} aria-label="Flag"></span>
                   </td>
                   <td className="tournament-bracket__score">
-                    <span className="tournament-bracket__number">4</span>
+                    <span className="tournament-bracket__number">{this.state.score1}</span>
                   </td>
                 </tr>
                 <tr className="tournament-bracket__team">
                   <td className="tournament-bracket__country">
-                    <abbr className="tournament-bracket__code" title="Kazakhstan">KAZ</abbr>
-                    <span className="tournament-bracket__flag flag-icon flag-icon-kz" aria-label="Flag"></span>
+                    <span className="tournament-bracket__code" title="CountryName">{this.state.team2}</span>
+                    <span className={classnames("tournament-bracket__flag", "flag-icon", this.state.flag2)} aria-label="Flag"></span>
                   </td>
                   <td className="tournament-bracket__score">
-                    <span className="tournament-bracket__number">1</span>
+                    <span className="tournament-bracket__number">{this.state.score2}</span>
                   </td>
                 </tr>
               </tbody>

@@ -27,6 +27,10 @@ const gameSchema = new Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
+  game: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false,
+  },
 })
 
 const Game = mongoose.model('Game', gameSchema);
