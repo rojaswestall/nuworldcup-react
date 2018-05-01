@@ -31,12 +31,21 @@ app.get('/', function(req, res) {
 //====GET GROUP STAGE GAMES===//
 app.get('/api/games', function(req, res) {
 	var params = req.query;
-	var team1 = params.team1;
-	var team2 = params.team2;
-	var game = params.game;
+	var team1 = "";
+	var team2 = "";
+	var gameNum = 0;
+	if (params.team1 !== null) {
+		team1 = params.team1;
+	}
+	if (params.team2 !== null) {
+		team2 = params.team2;
+	}
+	if (params.game) {
+		gameNum = params.game;
+	}
 	var tournament = params.tournament;
 
-  	Game.findOne({ $or:[{'team1': team1, 'team2': team2, 'tournament': tournament}, {'team1': team2, 'team2': team1, 'tournament': tournament}, {'tournament': tournament, 'game': game}]}).then(game => {
+  	Game.findOne({ $or:[{'team1': team1, 'team2': team2, 'tournament': tournament}, {'team1': team2, 'team2': team1, 'tournament': tournament}, {'tournament': tournament, 'game': gameNum}]}).then(game => {
     	res.json(game);
     })
  });

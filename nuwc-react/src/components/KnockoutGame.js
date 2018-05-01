@@ -10,12 +10,13 @@ class KnockoutGame extends Component {
         field: this.props.field,
         time: this.props.time,
         game: parseInt(this.props.game),
+        tournament: this.props.tournament,
         firstPlace: "",
         secondPlace: "",
         team1Status: "",
         team2Status: "",
-        team1: "",
-        team2: "",
+        team1: "Tm 1",
+        team2: "Tm 2",
         score1: 0,
         score2: 0,
         flag1: "flag-icon-",
@@ -30,21 +31,21 @@ class KnockoutGame extends Component {
 // tournament-bracket__team--winner goes with tournament-bracket__team in tr
 // If team1 score > team2 score then team1Status becomes tournament-bracket__team--winner 
 // include team1Status and team2Status as classes
-    componentDidMount() {
-        // Need to change this get to take arguments
-        // var currentMessages = this.scores;
-        axios.get('http://rojaswestall.com/api/games', {
-          game: this.state.game,
-          tournament: this.state.tournament
-        }).then((res) => {
-          var dbdata = res.data[0];
-          if (dbdata.game === this.state.game) {
-            this.setState({team1: dbdata.team1});
-            this.setState({team2: dbdata.team2});
-          }
-        });
+    // componentDidMount() {
+    //     // real endpoint: http://rojaswestall.com/api/games
+    //     // for testing: http://localhost:4000/api/games
+    //     axios.get('http://localhost:4000/api/games', {
+    //       game: this.state.game,
+    //       tournament: this.state.tournament
+    //     }).then((res) => {
+    //       var dbdata = res.data[0];
+    //       if (dbdata.game === this.state.game) {
+    //         this.setState({team1: dbdata.team1});
+    //         this.setState({team2: dbdata.team2});
+    //       }
+    //     });
 
-      }
+    //   }
 
     render() {
       return (
