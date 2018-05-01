@@ -1,12 +1,66 @@
 import React, { Component } from 'react';
 import GroupScores from './GroupScores';
+import WomenGroup from './WomenGroup';
+import Group from './Group';
 
 class Groups extends Component {
     render() {
 		return (
 				<div className="container">
+					<div className="groupstage-title">Groups</div>
+
+					<div className="bracket-title">Women's World Cup 2018</div>
+					<div className="row align-items-center ">
+						<WomenGroup group="1" team1="Australia" team2="South Korea" team3="Mexico" team4="Gonzo Team 1"/>
+						<WomenGroup group="2" team1="USA" team2="Ukraine" team3="Argentina" team4="Gonzo Team 2"/>
+					</div>
+
+					<div className="bracket-title-top-space">Co-Rec World Cup 2018</div>
+					<div className="row align-items-center">
+						<Group group="A" team1="Mozambique" team2="Mexico" team3="Brazil" team4="Mongolia"/>
+						<Group group="B" team1="St. Lucia" team2="Sweden" team3="Italy" team4="Kazakhstan"/>
+						<Group group="C" team1="Belarus" team2="Sierra Leone" team3="Djibouti" team4="St. Kitts & Nevis"/>
+						<Group group="D" team1="Nigeria" team2="Cameroon" team3="Hong Kong" team4="Armenia"/>
+					
+						<Group group="E" team1="Andorra" team2="Nicaragua" team3="Vietnam" team4="Germany"/>
+						<Group group="F" team1="Iran" team2="China" team3="USA" team4="Taiwan"/>
+						<Group group="G" team1="Lebanon" team2="Denmark" team3="Bulgaria" team4="Ecuador"/>
+						<Group group="H" team1="Poland" team2="Croatia" team3="France" team4="Colombia"/>
+					
+						<Group group="I" team1="Canada" team2="South Korea" team3="Saudi Arabia" team4="Chad"/>
+						<Group group="J" team1="Iceland" team2="Peru" team3="Israel" team4="India"/>
+					</div>
+
+
+
+
 					<hr />
-					<div className="fixture-title"> Fixtures </div>
+
+
+
+
+					<div className="groupstage-title">Fixtures</div>
+
+					<div className="bracket-title">Women's World Cup 2018</div>
+					<div className="group">
+						<div className="group-header">Group 1</div>
+						<GroupScores team1="Australia" flag1="au" team2="South Korea" flag2="kr" tournament="women" field="2" time="May 4, 5:00PM"/>
+						<GroupScores team1="Mexico" flag1="mx" team2="Gonzo Team 1" flag2="un" tournament="women" field="3" time="May 4, 5:00PM"/>
+						<GroupScores team1="Australia" flag1="au" team2="Mexico" flag2="mx" tournament="women" field="2" time="May 4, 6:20PM"/>
+						<GroupScores team1="South Korea" flag1="kr" team2="Gonzo Team 1" flag2="un" tournament="women" field="3" time="May 4, 6:20PM"/>
+						<GroupScores team1="Australia" flag1="au" team2="Gonzo Team 1" flag2="un" tournament="women" field="2" time="May 4, 7:20PM"/>
+						<GroupScores team1="South Korea" flag1="kr" team2="Mexico" flag2="mx" tournament="women" field="3" time="May 4, 7:20PM"/>
+					</div>
+					<div className="group">
+						<div className="group-header">Group 2</div>
+						<GroupScores team1="USA" flag1="us" team2="Ukraine" flag2="ua" tournament="women" field="2" time="May 4, 5:40PM"/>
+						<GroupScores team1="Argentina" flag1="ar" team2="Gonzo Team 2" flag2="un" tournament="women" field="3" time="May 4, 5:40PM"/>
+						<GroupScores team1="USA" flag1="us" team2="Argentina" flag2="ar" tournament="women" field="2" time="May 4, 7:00PM"/>
+						<GroupScores team1="Ukraine" flag1="ua" team2="Gonzo Team 2" flag2="un" tournament="women" field="3" time="May 4, 7:00PM"/>
+						<GroupScores team1="USA" flag1="us" team2="Gonzo Team 2" flag2="un" tournament="women" field="2" time="May 4, 8:20PM"/>
+						<GroupScores team1="Ukraine" flag1="ua" team2="Argentina" flag2="ar" tournament="women" field="3" time="May 4, 8:20PM"/>
+					</div>
+
 					<div className="bracket-title-top-space">Co-Rec World Cup 2018</div>
 					<div className="group">
 						<div className="group-header">Group A</div>
@@ -128,3 +182,5 @@ export default Groups;
 // 		LOOP for game in the groups
 //		<GroupScores ...fill in with array...>
 // </div>
+
+// SAME FOR GROUPS

@@ -19,17 +19,7 @@ class GroupScores extends Component {
   		};
     }
 
-    // Pass team1 and team2 to the component
-    // Make get request to get the scores for that game
-    // Match the teams to the scores
-
-
-    // Pass arguments to props, then make the get request passing those arguemnts
-    // Fetch from the database using those arguments on the server side
-
     	componentDidMount() {
-    		// Need to change this get to take arguments
-    		// var currentMessages = this.scores;
         // real endpoint: http://rojaswestall.com/api/games
         // for testing: http://localhost:4000/api/games
 

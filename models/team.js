@@ -7,10 +7,6 @@ const teamSchema = new Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
-  abbreviation: {
-    type: mongoose.Schema.Types.Mixed,
-    required: true,
-  },
   flag: {
     type: mongoose.Schema.Types.Mixed,
     required: true,

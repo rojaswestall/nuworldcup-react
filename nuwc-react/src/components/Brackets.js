@@ -27,7 +27,7 @@ class Brackets extends Component {
 				  </div>
 				</div>
 
-				<div className="bracket-title-wc">Co-Rec World Cup 2018</div>
+				<div className="bracket-title-top-space">Co-Rec World Cup 2018</div>
 
 				<div className="bracket-container">
 				  <div className="tournament-bracket tournament-bracket--rounded">
@@ -94,10 +94,6 @@ class Brackets extends Component {
 				  </div>
 				</div>
 			</div>
-
-
-
-
 
 	    );
 	}

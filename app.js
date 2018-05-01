@@ -5,6 +5,7 @@ const path = require('path');
 const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 const Game = require('./models/game.js')
+const Team = require('./models/team.js')
 const app = express();
 const url = 'mongodb://nu-worldcupadmin:2018@ds257579.mlab.com:57579/nu-worldcup';
 const axios = require('axios');
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //====ROOT DIRECTORY===//
 app.get('/', function(req, res) {
-  res.json('you did it');
+  res.json('you are at the nu world cup server!');
   console.log('A GET request was made');
 });
 
@@ -39,24 +40,62 @@ app.get('/api/games', function(req, res) {
     })
  });
 
-//====POST NEW GAME===//
-app.post('/api/games', function(req, res) {
-	Game.create({
-		score: req.body.score,
-		teams: req.body.teams,
-	}).then(game => {
-		res.json(game)
+//====GET GROUP STAGE POINTS===//
+app.get('/api/points', function(req, res) {
+	var params = req.query;
+	var name = params.name;
+	var tournament = params.tournament;
+
+  	Team.findOne({'name': name, 'tournament': tournament}).then(team => {
+    	res.json(team);
+    })
+ });
+
+
+// UPDATE GROUP STAGE POINTS FROM SLACK
+app.post('/slack/updatepoints', function (req, res) {
+	// team points tournament
+
+	var params = req.body.text;
+	text = params.split(" ");
+	var name = text[0];
+	var points = parseInt(text[1]);
+	var tournament = text[2];
+
+	// Need to put this into the database now
+
+	Team.findOne({'name': name, 'tournament' : tournament}, (err, team) => {
+		if (err) {
+			console.log("Error in finding Team", err)
+		}
+		if (team) {
+			var beforePoints = team.points;
+			team.points = points;
+			team.save((err) => {
+				if (err) {
+			  		console.log("Error updating the team with the new points from slack", err);
+			  	}
+			  	else {
+			  		// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
+					var response = "Points have been updated from " + beforePoints + " to " + points + " for " + name + "!";
+					axios.post('https://hooks.slack.com/services/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', 
+						{"text":response});
+			  	}
+			});
+		}
+		else {
+			// If all goes well respond with below. Otherwise respond saying there was an error and return what they put in
+			var response = "There was an error updating points on the website :( Please check what you sent:\n\n";
+			response = response + params;
+			axios.post('https://hooks.slack.com/services/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', 
+				{"text":response});
+		}
 	});
 });
 
-app.post('/slack/updatepoints', function (req, res) {
-
-	axios.post('https://hooks.slack.com/services/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', 
-						{"text":"Score was updated for a team to be ?"});
-});
-
+// UPDATE GROUP STAGE GAMES FROM SLACK
 app.post('/slack/addscore', function(req, res) {
-	// console.log('req',res);
+
 	var params = req.body.text;
 	text = params.split(" ");
 	var team1 = text[0];
