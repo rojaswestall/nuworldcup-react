@@ -191,14 +191,14 @@ app.post('/slack/addknockout', function(req, res) {
 					console.log("Error finding team 2", err);
 				}
 				if (teamtwo) {
-					Game.findOne({'tournament': tournament, 'game': game}, (err, game) => {
+					Game.findOne({'tournament': tournament, 'game': game}, (err, kogame) => {
 						if (err) {
 							console.log("Error in finding Game", err)
 						}
-						if (game) {
-							game.team1 = team1;
-							game.team2 = team2;
-							game.save((err) => {
+						if (kogame) {
+							kogame.team1 = team1;
+							kogame.team2 = team2;
+							kogame.save((err) => {
 								if (err) {
 									console.log("Error updating knockout game with teams from slack");
 								}
@@ -235,6 +235,41 @@ app.post('/slack/addknockout', function(req, res) {
 		}
 
 	});
+});
+
+
+app.post('/slack/resetknockout', function(req, res) {
+
+	var params = req.body.text;
+	text = params.split(" ");
+	var game = parseInt(text[0]);
+	var tournament = text[1];
+
+	Game.findOne({'game': game, 'tournament': tournament}, (err, kogame) => {
+		if (err) {
+			console.log("Error resetting kogame", err);
+		}
+		if (kogame) {
+			kogame.team1 = "Tm 1";
+			kogame.team2 = "Tm 2";
+			kogame.score1 = 0;
+			kogame.score2 = 0;
+			kogame.save((err) => {
+				if (err) {
+					console.log("Error resetting knockout game from slack");
+				}
+				else {
+					var response = "Knockout game " + game + " has been reset!";
+					axios.post('https://hooks.slack.com/services/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', 
+						{"text":response});
+				}
+			});
+		}
+	})
+
+
+
+	
 });
 
 // EXAMPLES
