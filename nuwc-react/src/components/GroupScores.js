@@ -32,7 +32,6 @@ class GroupScores extends Component {
           }
   			}).then((res) => {
   				var dbdata = res.data;
-          console.log(res.data);
   				if (dbdata.team1 === this.state.team1.replace(/\s+/g, '-')) {
   					this.setState({score1: dbdata.score1});
   					this.setState({score2: dbdata.score2});

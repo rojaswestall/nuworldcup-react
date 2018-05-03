@@ -41,7 +41,7 @@ app.get('/api/games', function(req, res) {
 		team2 = params.team2;
 	}
 	if (params.game) {
-		gameNum = params.game;
+		gameNum = parseInt(params.game);
 	}
 	var tournament = params.tournament;
 
@@ -60,6 +60,13 @@ app.get('/api/points', function(req, res) {
     	res.json(team);
     })
  });
+
+
+
+
+
+
+
 
 
 // UPDATE GROUP STAGE POINTS FROM SLACK
@@ -160,6 +167,105 @@ app.post('/slack/addscore', function(req, res) {
 		}
 	});
 });
+
+
+app.post('/slack/addknockout', function(req, res) {
+
+	var params = req.body.text;
+	text = params.split(" ");
+	var game = parseInt(text[0]);
+	var team1 = text[1];
+	var team2 = text[2];
+	var tournament = text[3];
+
+	// Need to put this into the database now 
+
+	// Ewww these callbacks are not nice.... Need to change
+	Team.findOne({'name': team1, 'tournament': tournament}, (err, teamone) => {
+		if (err) {
+			console.log("Error finding team 1", err);
+		}
+		if (teamone) {
+			Team.findOne({'name': team2, 'tournament': tournament}, (err, teamtwo) => {
+				if (err) {
+					console.log("Error finding team 2", err);
+				}
+				if (teamtwo) {
+					Game.findOne({'tournament': tournament, 'game': game}, (err, game) => {
+						if (err) {
+							console.log("Error in finding Game", err)
+						}
+						if (game) {
+							game.team1 = team1;
+							game.team2 = team2;
+							game.save((err) => {
+								if (err) {
+									console.log("Error updating knockout game with teams from slack");
+								}
+								else {
+									var response = "New teams have been added for a knockout game!\n\n";
+									response = response + team1 + " and " + team2 + " are playing in game " + game + "!";
+									axios.post('https://hooks.slack.com/services/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', 
+										{"text":response});
+								}
+							});
+						}
+						else {
+							var response = "There was an error adding the game :( Game " + game + " doesn't exist. Please check what you sent:\n\n";
+							response = response + params;
+							axios.post('https://hooks.slack.com/services/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', 
+								{"text":response});
+						}
+					});
+				}
+				else {
+					var response = "There was an error adding the game :( Team 2 doesn't exist. Please check what you sent:\n\n";
+					response = response + params;
+					axios.post('https://hooks.slack.com/services/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', 
+						{"text":response});
+				}
+			});
+
+		}
+		else {
+			var response = "There was an error adding the game :( Team 1 doesn't exist. Please check what you sent:\n\n";
+			response = response + params;
+			axios.post('https://hooks.slack.com/services/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', 
+				{"text":response});
+		}
+
+	});
+});
+
+// EXAMPLES
+
+// FOR A TEAM
+// {
+//     "_id": {
+//         "$oid": "5ae78652734d1d133184096f"
+//     },
+//     "name": "Australia",
+//     "flag": "au",
+//     "points": 0,
+//     "tournament": "women",
+//     "abb": "AUS"
+// }
+
+
+// FOR A GAME
+// {
+//     "_id": {
+//         "$oid": "5ae8aeb9734d1d1331848a12"
+//     },
+//     "team1": "Tm 1",
+//     "score1": 0,
+//     "team2": "Tm 2",
+//     "score2": 0,
+//     "type": "knockout",
+//     "tournament": "co-rec",
+//     "game": 19
+// }
+
 
 // KNOCKOUT GAME
 

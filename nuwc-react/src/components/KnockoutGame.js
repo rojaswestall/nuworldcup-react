@@ -21,31 +21,77 @@ class KnockoutGame extends Component {
         score2: 0,
         flag1: "flag-icon-",
         flag2: "flag-icon-"
-
-
-        
       };
     }
+
 
 
 // tournament-bracket__team--winner goes with tournament-bracket__team in tr
 // If team1 score > team2 score then team1Status becomes tournament-bracket__team--winner 
 // include team1Status and team2Status as classes
-    // componentDidMount() {
-    //     // real endpoint: http://rojaswestall.com/api/games
-    //     // for testing: http://localhost:4000/api/games
-    //     axios.get('http://localhost:4000/api/games', {
-    //       game: this.state.game,
-    //       tournament: this.state.tournament
-    //     }).then((res) => {
-    //       var dbdata = res.data[0];
-    //       if (dbdata.game === this.state.game) {
-    //         this.setState({team1: dbdata.team1});
-    //         this.setState({team2: dbdata.team2});
-    //       }
-    //     });
+    async componentDidMount() {
+        // real endpoint: http://rojaswestall.com/api/games
+        // for testing: http://localhost:4000/api/games
+        var gameRequest = await axios.get('http://localhost:4000/api/games', {
+          params: {
+            game: parseInt(this.state.game),
+            tournament: this.state.tournament
+          }
+        });
+        var dbdata = gameRequest.data;
 
-    //   }
+        if (dbdata.game === this.state.game) {
+          if (dbdata.team1 === "Tm 1" && dbdata.team2 === "Tm 2") {
+            this.setState({team1: dbdata.team1});
+            this.setState({team2: dbdata.team2});
+          }
+          // If the team1 and team2 is not Tm 1 or Tm 2, try a request to get the info for that team
+          else {
+            this.setState({score1: dbdata.score1});
+            this.setState({score2: dbdata.score2});
+
+            // Checking scores to declare winner
+            if (dbdata.score1 > dbdata.score2) {
+              this.setState({team1Status: "tournament-bracket__team--winner"});
+            }
+            else if (dbdata.score1 < dbdata.score2) {
+              this.setState({team2Status: "tournament-bracket__team--winner"});
+            }
+
+
+            //real endpoint: http://rojaswestall.com/api/points
+            // for testing: http://localhost:4000/api/points
+            const team1Request = await axios.get('http://localhost:4000/api/points', {
+              params: {
+                name: dbdata.team1.replace(/\s+/g, '-'),
+                tournament: this.state.tournament
+              }
+            });
+            var team1data = team1Request.data;
+            if (team1data.name === dbdata.team1.replace(/\s+/g, '-')) {
+              this.setState({flag1: 'flag-icon-' + team1data.flag});
+              this.setState({team1: team1data.abb});
+            }
+
+            //real endpoint: http://rojaswestall.com/api/points
+            // for testing: http://localhost:4000/api/points
+            const team2Request = await axios.get('http://localhost:4000/api/points', {
+              params: {
+                name: dbdata.team2.replace(/\s+/g, '-'),
+                tournament: this.state.tournament
+              }
+            });
+            var team2data = team2Request.data;
+            if (team2data.name === dbdata.team2.replace(/\s+/g, '-')) {
+              this.setState({flag2: 'flag-icon-' + team2data.flag});
+              this.setState({team2: team2data.abb});
+            }
+
+
+          }
+        }
+
+      }
 
     render() {
       return (
@@ -64,7 +110,7 @@ class KnockoutGame extends Component {
                 </tr>
               </thead>  
               <tbody className="tournament-bracket__content">
-                <tr className="tournament-bracket__team">
+                <tr className={classnames("tournament-bracket__team", this.state.team1Status)}>
                   <td className="tournament-bracket__country">
                     <span className="tournament-bracket__code" title="CountryName">{this.state.team1}</span>
                     <span className={classnames("tournament-bracket__flag", "flag-icon", this.state.flag1)} aria-label="Flag"></span>
@@ -73,7 +119,7 @@ class KnockoutGame extends Component {
                     <span className="tournament-bracket__number">{this.state.score1}</span>
                   </td>
                 </tr>
-                <tr className="tournament-bracket__team">
+                <tr className={classnames("tournament-bracket__team", this.state.team2Status)}>
                   <td className="tournament-bracket__country">
                     <span className="tournament-bracket__code" title="CountryName">{this.state.team2}</span>
                     <span className={classnames("tournament-bracket__flag", "flag-icon", this.state.flag2)} aria-label="Flag"></span>

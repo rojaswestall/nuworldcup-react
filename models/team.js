@@ -18,7 +18,11 @@ const teamSchema = new Schema({
   tournament: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
-  }
+  },
+  abb: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
 })
 
 const Team = mongoose.model('Team', teamSchema);
