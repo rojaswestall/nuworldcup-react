@@ -33,7 +33,8 @@ class KnockoutGame extends Component {
     async componentDidMount() {
         // real endpoint: http://rojaswestall.com/api/games
         // for testing: http://localhost:4000/api/games
-        var gameRequest = await axios.get('http://rojaswestall.com/api/games', {
+        // https://nuwc-server.herokuapp.com/api/games
+        var gameRequest = await axios.get('https://nuwc-server.herokuapp.com/api/games', {
           params: {
             game: parseInt(this.state.game),
             tournament: this.state.tournament
@@ -72,7 +73,8 @@ class KnockoutGame extends Component {
 
             //real endpoint: http://rojaswestall.com/api/points
             // for testing: http://localhost:4000/api/points
-            const team1Request = await axios.get('http://rojaswestall.com/api/points', {
+            // https://nuwc-server.herokuapp.com/api/points
+            const team1Request = await axios.get('https://nuwc-server.herokuapp.com/api/points', {
               params: {
                 name: dbdata.team1.replace(/\s+/g, '-'),
                 tournament: this.state.tournament
@@ -86,7 +88,7 @@ class KnockoutGame extends Component {
 
             //real endpoint: http://rojaswestall.com/api/points
             // for testing: http://localhost:4000/api/points
-            const team2Request = await axios.get('http://rojaswestall.com/api/points', {
+            const team2Request = await axios.get('https://nuwc-server.herokuapp.com/api/points', {
               params: {
                 name: dbdata.team2.replace(/\s+/g, '-'),
                 tournament: this.state.tournament

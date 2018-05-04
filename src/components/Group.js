@@ -20,6 +20,7 @@ class Group extends Component {
     componentDidMount() {
     // real endpoint: http://rojaswestall.com/api/points
     // for testing: http://localhost:4000/api/points
+    // https://nuwc-server.herokuapp.com/api/points
 
     // Need to replace spaces with - because teams with spaces use dashes in the database to accomodate for slack
     	var teamArr = ["team1", "team2", "team3", "team4"];
@@ -28,7 +29,7 @@ class Group extends Component {
     		var pointsCopy = this.state.points;
     		var flagsCopy = this.state.flags;
 
-    		axios.get('http://rojaswestall.com/api/points', {
+    		axios.get('https://nuwc-server.herokuapp.com/api/points', {
 				params: {
 	        		name: this.state.teams[team].replace(/\s+/g, '-'),
 	        		tournament: this.state.tournament
