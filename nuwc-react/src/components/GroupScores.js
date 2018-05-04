@@ -24,7 +24,7 @@ class GroupScores extends Component {
         // for testing: http://localhost:4000/api/games
 
         // Need to replace spaces with - because teams with spaces use dashes in the database to accomodate for slack
-    		axios.get('http://localhost:4000/api/games', {
+    		axios.get('http://rojaswestall.com/api/games', {
     			params: {
             team1: this.state.team1.replace(/\s+/g, '-'),
     			  team2: this.state.team2.replace(/\s+/g, '-'),
