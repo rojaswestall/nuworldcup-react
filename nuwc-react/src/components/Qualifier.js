@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import classnames from 'classnames';
 
-class KnockoutGame extends Component {
+class Qualifier extends Component {
   constructor(props) {
     super(props);
 
@@ -106,7 +106,7 @@ class KnockoutGame extends Component {
 
     render() {
       return (
-        <li className="tournament-bracket__item">
+        <li className="tournament-bracket__item__qualifier">
           <div className="tournament-bracket__match" tabIndex="0">
             <table className="tournament-bracket__table">
               <caption className="tournament-bracket__caption">
@@ -150,5 +150,5 @@ class KnockoutGame extends Component {
     }
 }
 
-export default KnockoutGame;
+export default Qualifier;
 

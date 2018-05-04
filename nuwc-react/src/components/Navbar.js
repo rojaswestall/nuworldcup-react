@@ -21,18 +21,14 @@ class Navbar extends Component {
 							<li className="nav-item">
 								<Link className="nav-link" to={'/FAQ'}> FAQ </Link>
 							</li>
-							<li className="nav-item">
-								<a className="nav-link" href="about-us"> About Us </a>
-							</li>
+							
 							<li className="nav-item">
 								<a className="nav-link" href="/gonzo"> Gonzo Soccer </a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="sponsors"> Sponsors </a>
 							</li>
-							<li className="nav-item">
-								<a className="nav-link" href="/gallery"> Gallery </a>
-							</li>
+							
 							<li className="nav-item">
 								<Link className="nav-link" to={'/tournament-info'}> Tournament Information </Link>
 							</li>
@@ -51,7 +47,10 @@ export default Navbar;
 
 
 // <li className="nav-item">
-// 	<Link className="nav-link" to={'/tournament-info'}> Tournament Information </Link>
+// 	<a className="nav-link" href="about-us"> About Us </a>
+// </li>
+// <li className="nav-item">
+// 	<a className="nav-link" href="/gallery"> Gallery </a>
 // </li>
 
 

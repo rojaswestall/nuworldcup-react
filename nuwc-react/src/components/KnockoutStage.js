@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import KnockoutGame from './KnockoutGame';
+import Qualifier from './Qualifier';
 
 class KnockoutStage extends Component {
     render() {
@@ -14,20 +15,45 @@ class KnockoutStage extends Component {
 				  	<div className="tournament-bracket__round tournament-bracket__round--quarterfinals">
 				      <h3 className="tournament-bracket__round-title">Semi-Finals</h3>
 				      <ul className="tournament-bracket__list">
-				      	<KnockoutGame game="1" field="4" time="11:20am" tournament="co-rec"/>
-				        <KnockoutGame game="2" field="5" time="11:20am" tournament="co-rec"/>
+				      	<KnockoutGame game="1" field="4" time="11:20am" tournament="women"/>
+				        <KnockoutGame game="2" field="5" time="11:20am" tournament="women"/>
 				      </ul>
 				    </div>
 				    <div className="tournament-bracket__round tournament-bracket__round--quarterfinals">
 				      <h3 className="tournament-bracket__round-title">Championship</h3>
 				      <ul className="tournament-bracket__list">
-				      	<KnockoutGame game="3" field="4" time="12:40pm" tournament="co-rec"/>
+				      	<KnockoutGame game="3" field="4" time="12:40pm" tournament="women"/>
 				      </ul>
 				    </div>
 				  </div>
 				</div>
 
 				<div className="bracket-title-top-space">Co-Rec World Cup 2018</div>
+
+				<h3 className="tournament-bracket__round-title">Qualifiers</h3>
+
+				<div className="bracket-container">
+				  <div className="tournament-bracket tournament-bracket--rounded">
+				<div className="tournament-bracket__round tournament-bracket__round--quarterfinals">
+					<div className="row">
+						<div className="col-md-6 col-sm-6 col-xs-6">
+							<Qualifier game="1" field="6" time="1:10pm" tournament="co-rec"/>
+						</div>
+						<div className="col-md-6 col-sm-6 col-xs-6">
+							<Qualifier game="2" field="7" time="1:10pm" tournament="co-rec"/>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-md-6 col-sm-6 col-xs-6">
+							<Qualifier game="3" field="6" time="1:50pm" tournament="co-rec"/>
+						</div>
+						<div className="col-md-6 col-sm-6 col-xs-6">
+							<Qualifier game="4" field="7" time="1:50pm" tournament="co-rec"/>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
 
 				<div className="bracket-container">
 				  <div className="tournament-bracket tournament-bracket--rounded">
@@ -104,4 +130,19 @@ export default KnockoutStage;
 //     <KnockoutGame team1="" team2="" field="9" time=""/>
 //     <KnockoutGame team1="" team2="" field="10" time=""/>
 //   </ul>
+// </div>
+
+
+
+// <div className="col-3">
+// 	<Qualifier game="1" field="1" time="2:40pm" tournament="co-rec"/>
+// </div>
+// <div className="col-3">
+// 	<Qualifier game="2" field="2" time="2:40pm" tournament="co-rec"/>
+// </div>
+// <div className="col-3">
+// 	<Qualifier game="3" field="3" time="2:40pm" tournament="co-rec"/>
+// </div>
+// <div className="col-3">
+// 	<Qualifier game="4" field="4" time="2:40pm" tournament="co-rec"/>
 // </div>
