@@ -67,9 +67,9 @@ class GroupStage extends Component {
 						<GroupScores team1="Mozambique" flag1="mz" team2="Mexico" flag2="mx" tournament="co-rec" field="1" time="May 4, 5:00PM"/>
 						<GroupScores team1="Brazil" flag1="br" team2="Mongolia" flag2="mn" tournament="co-rec" field="4" time="May 4, 5:00PM"/>
 						<GroupScores team1="Mozambique" flag1="mz" team2="Brazil" flag2="br" tournament="co-rec" field="7" time="May 4, 7:40PM"/>
-						<GroupScores team1="Mexico" flag1="mx" team2="Mongolia" flag2="mn" tournament="co-rec" field="1" time="May 4, 7:40PM"/>
-						<GroupScores team1="Mozambique" flag1="mz" team2="Mongolia" flag2="mn" tournament="co-rec" field="4" time="May 5, 9:20AM"/>
-						<GroupScores team1="Mexico" flag1="mx" team2="Brazil" flag2="br" tournament="co-rec" field="7" time="May 5, 9:20AM"/>
+						<GroupScores team1="Mexico" flag1="mx" team2="Mongolia" flag2="mn" tournament="co-rec" field="8" time="May 4, 7:40PM"/>
+						<GroupScores team1="Mozambique" flag1="mz" team2="Mongolia" flag2="mn" tournament="co-rec" field="1" time="May 5, 9:20AM"/>
+						<GroupScores team1="Mexico" flag1="mx" team2="Brazil" flag2="br" tournament="co-rec" field="2" time="May 5, 9:20AM"/>
 					</div>
 					<div className="group">
 						<div className="group-header">Group B</div>
