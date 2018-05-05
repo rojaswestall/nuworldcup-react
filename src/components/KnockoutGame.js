@@ -47,6 +47,38 @@ class KnockoutGame extends Component {
             this.setState({team1: dbdata.team1});
             this.setState({team2: dbdata.team2});
           }
+
+          else if (dbdata.team1 === "Tm 1") {
+            // Just team one hasn't gone
+            const team2Request = await axios.get('https://nuwc-server.herokuapp.com/api/points', {
+              params: {
+                name: dbdata.team2.replace(/\s+/g, '-'),
+                tournament: this.state.tournament
+              }
+            });
+            var team2data = team2Request.data;
+            if (team2data.name === dbdata.team2.replace(/\s+/g, '-')) {
+              this.setState({flag2: 'flag-icon-' + team2data.flag});
+              this.setState({team2: team2data.abb});
+            }
+          }
+
+          else if (dbdata.team2 === "Tm 2") {
+            // Just team two hasn't gone
+            const team1Request = await axios.get('https://nuwc-server.herokuapp.com/api/points', {
+              params: {
+                name: dbdata.team1.replace(/\s+/g, '-'),
+                tournament: this.state.tournament
+              }
+            });
+            var team1data = team1Request.data;
+            if (team1data.name === dbdata.team1.replace(/\s+/g, '-')) {
+              this.setState({flag1: 'flag-icon-' + team1data.flag});
+              this.setState({team1: team1data.abb});
+            }
+          }
+
+
           // If the team1 and team2 is not Tm 1 or Tm 2, try a request to get the info for that team
           else {
             this.setState({score1: dbdata.score1});
