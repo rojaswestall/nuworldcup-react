@@ -37,18 +37,18 @@ class KnockoutStage extends Component {
 				<div className="tournament-bracket__round tournament-bracket__round--quarterfinals">
 					<div className="row">
 						<div className="col-md-6 col-sm-6 col-xs-6">
-							<Qualifier game="1" field="6" time="1:10pm" tournament="co-rec"/>
+							<Qualifier game="1" field="6" time="12:40pm" tournament="co-rec"/>
 						</div>
 						<div className="col-md-6 col-sm-6 col-xs-6">
-							<Qualifier game="2" field="7" time="1:10pm" tournament="co-rec"/>
+							<Qualifier game="2" field="7" time="12:40pm" tournament="co-rec"/>
 						</div>
 					</div>
 					<div className="row">
 						<div className="col-md-6 col-sm-6 col-xs-6">
-							<Qualifier game="3" field="6" time="1:50pm" tournament="co-rec"/>
+							<Qualifier game="3" field="6" time="1:20pm" tournament="co-rec"/>
 						</div>
 						<div className="col-md-6 col-sm-6 col-xs-6">
-							<Qualifier game="4" field="7" time="1:50pm" tournament="co-rec"/>
+							<Qualifier game="4" field="7" time="1:20pm" tournament="co-rec"/>
 						</div>
 					</div>
 				</div>
