@@ -19,6 +19,9 @@ class Navbar extends Component {
 						</ul>
 						<ul className="navbar-nav">
 							<li className="nav-item">
+								<a className="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSc52zYiXGeRShcX3movdpE5wZfwYNfkJYi7t574pc1K-8MnOw/viewform"> Register </a>
+							</li>
+							<li className="nav-item">
 								<Link className="nav-link" to={'/FAQ'}> FAQ </Link>
 							</li>
 							
