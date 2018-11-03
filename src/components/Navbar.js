@@ -23,16 +23,11 @@ class Navbar extends Component {
 							</li>
 							
 							<li className="nav-item">
-								<a className="nav-link" href="/gonzo"> Gonzo Soccer </a>
+								<Link className="nav-link" to={'/gonzo'}> Gonzo Soccer </Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link" href="sponsors"> Sponsors </a>
+								<Link className="nav-link" to={'/sponsors'}> Sponsors </Link>
 							</li>
-							
-							<li className="nav-item">
-								<Link className="nav-link" to={'/tournament-info'}> Tournament Information </Link>
-							</li>
-							
 						</ul>
 					</div>
 				</div>

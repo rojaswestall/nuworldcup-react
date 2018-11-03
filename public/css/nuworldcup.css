@@ -59,6 +59,17 @@ html {
     max-width: 100%;
 }
 
+.wicked-background-div {
+    height: 100vh;
+}
+
+.wicked-background {
+    /*max-height: 100%;*/
+    /*max-width: 100%;*/
+    width: 100%;
+}
+
+
 
 /*FAQ PAGE*/
 .map-div {
